@@ -1,6 +1,7 @@
 #include "Parrticle.h"
 
 using namespace MathUtility;
+using namespace KamataEngine;
 
 void Parrticle::Initialize(Model* model, Vector3 position, Vector3 velocity) { 
 	assert(model);
@@ -15,13 +16,29 @@ void Parrticle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 
 }
 
-void Parrticle::Update() { 
+void Parrticle::Update() {
+	
+	if (isFinished_) {
+		return;
+	}
+
+	counter_ += 1.0f / 60.0f;
+
+	if (counter_ >= kDuration) {
+		counter_ = kDuration;
+		isFinished_ = true;
+	} 
 	worldtransform_.translation_ += velocity_;
 	//worldtransform_.TransferMatrix();
 
 	worldtransform_.UpdateMatrix();
 
+	color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
+
 	objectColor_.SetColor(color_);
+
+	
+
 }
 
 void Parrticle::Draw(Camera& camera) { 

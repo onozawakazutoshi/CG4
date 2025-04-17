@@ -35,6 +35,13 @@ void GameScene::Update() {
 	for (Parrticle* particle : particles_) {
 		particle->Update();
 	}
+	particles_.remove_if([](Parrticle* particle) {
+		if (particle->IsFinished()) {
+			delete particle;
+			return true;
+		}
+		return false;
+	});
 
 }
 
