@@ -10,7 +10,10 @@ public:
 	GameScene() {}
 	~GameScene() { 
 		delete modelParticle_;
-		delete particle_;
+		for (Parrticle* particle : particles_) {
+			delete particle;
+		}
+		particles_.clear();
 	}
 
 	void Initialize();
@@ -22,5 +25,5 @@ public:
 private:
 	Model* modelParticle_ = nullptr;
 	Camera* camera_;
-	Parrticle* particle_ = nullptr;
+	std::list<Parrticle*> particles_;
 };
