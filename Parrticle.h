@@ -5,7 +5,7 @@ using namespace KamataEngine;
 
 class Parrticle {
 public:
-	void Initialize(Model*model,Vector3 position);
+	void Initialize(Model* model, Vector3 position, Vector3 velocity);
 
 	void Update();
 
@@ -16,5 +16,5 @@ private:
 	Model* model_ = nullptr;
 	ObjectColor objectColor_;
 	Vector4 color_;
-
+	Vector3 velocity_;
 };
