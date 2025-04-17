@@ -1,22 +1,32 @@
 #include <Windows.h>
 #include <KamataEngine.h>
+#include "GameScene.h"
 
 using namespace KamataEngine;
 
-DirectXCommon* dxcommon = DirectXCommon::GetInstance();
+GameScene* gameScene = new GameScene;
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) { 
 
 	KamataEngine::Initialize();
-	
+	gameScene->Initialize();
+
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+
 	while (true) {
 		if (KamataEngine::Update()) {
 			
 			break;
 		}
-		dxcommon->PreDraw();
-		dxcommon->PostDraw();
+
+		gameScene->Update();
+
+		dxCommon->PreDraw();
+		gameScene->Draw();
+		dxCommon->PostDraw();
+
+		
 	}
 
 	
