@@ -2,8 +2,6 @@
 #include <KamataEngine.h>
 #include "Parrticle.h"
 
-using namespace KamataEngine;
-
 class GameScene {
 
 public:
@@ -22,10 +20,10 @@ public:
 
 	void Draw();
 
-	void ParticleBorn(Vector3 position);
+	void ParticleBorn(KamataEngine::Vector3 position);
 
 private:
-	Model* modelParticle_ = nullptr;
-	Camera* camera_;
+	KamataEngine::Model* modelParticle_ = nullptr;
+	KamataEngine::Camera* camera_;
 	std::list<Parrticle*> particles_;
 };

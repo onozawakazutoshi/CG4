@@ -1,7 +1,8 @@
 #include "Parrticle.h"
 
-using namespace MathUtility;
 using namespace KamataEngine;
+using namespace MathUtility;
+
 
 void Parrticle::Initialize(Model* model, Vector3 position, Vector3 velocity) { 
 	assert(model);
