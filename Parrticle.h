@@ -24,4 +24,6 @@ private:
 	float counter_ = 0.0f;
 	const float kDuration = 1.0f;
 
+	KamataEngine::Sprite sprite_;
+
 };

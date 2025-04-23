@@ -15,6 +15,8 @@ void Parrticle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 	objectColor_.Initialize();
 	color_ = {1, 1, 0, 1};
 
+	
+
 }
 
 void Parrticle::Update() {
