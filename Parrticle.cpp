@@ -13,10 +13,13 @@ void Parrticle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 
 	velocity_ = velocity;
 	objectColor_.Initialize();
-	color_ = {1, 1, 0, 1};
+	color_ = {1, 1, 1, 1};
 
-	
+	uint32_t tex = TextureManager::Load("white1x1.png");
 
+	sprite_ = Sprite::Create(tex, Vector2(100,100), color_, {0.5, 0.5});
+	sprite_->SetSize(Vector2(50, 50));
+	sprite_->SetRotation(0.75f);
 }
 
 void Parrticle::Update() {
@@ -45,6 +48,7 @@ void Parrticle::Update() {
 }
 
 void Parrticle::Draw(Camera& camera) { 
-	model_->Draw(worldtransform_, camera,&objectColor_);
-
+	camera;
+	//model_->Draw(worldtransform_, camera,&objectColor_);
+	sprite_->Draw();
 }

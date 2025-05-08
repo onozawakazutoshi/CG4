@@ -37,12 +37,12 @@ void GameScene::Update() {
 
 void GameScene::Draw() { 
 	DirectXCommon* dxcommon = DirectXCommon::GetInstance();
-	Model::PreDraw(dxcommon->GetCommandList());
+	Sprite::PreDraw(dxcommon->GetCommandList());
 
 	for (Parrticle* particle : particles_) {
 		particle->Draw(*camera_);
 	}
-	Model::PostDraw();
+	Sprite::PostDraw();
 	
 
 }
