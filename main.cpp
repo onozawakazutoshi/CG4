@@ -5,7 +5,9 @@
 using namespace KamataEngine;
 
 
-// Windowsアプリでのエントリーポイント(main関数)
+ID3DBlob* CompileShader(const std::wstring& filePath, const std::string& shaderModel);
+
+	// Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) { 
 
 	KamataEngine::Initialize();
@@ -53,28 +55,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	IDxcBlob* pixelShaderBlob = CompileShader(L"Shader/Object3d.PS.hlsl", L"ps_6_0", dxcUtils, dxcCompiler, includeHandler);
 	assert(pixelShaderBlob != nullptr);*/
 
-	ID3DBlob* vsBlob = nullptr;
-	ID3DBlob* psBlob = nullptr;
+	ID3DBlob* vsBlob = CompileShader(L"Resources/shaders/TestVS.hlsl", "vs_5_0");
+	ID3DBlob* psBlob = CompileShader(L"Resources/shaders/TestSP.hlsl", "ps_5_0");
 	//ID3DBlob* errorBlob = nullptr;
-
-	std::wstring vsFile = L"Resources/shaders/TestVS.hlsl";
-	hr = D3DCompileFromFile(vsFile.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "vs_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &vsBlob, &errorBlob);
-	if (FAILED(hr)) {
-		DebugText::GetInstance()->ConsolePrintf(std::system_category().message(hr).c_str());
-		if (errorBlob) {
-			DebugText::GetInstance()->ConsolePrintf(reinterpret_cast<char*>(errorBlob->GetBufferPointer()));
-		}
-		assert(false);
-	}
-	std::wstring psFile = L"Resources/shaders/TestSP.hlsl";
-	hr = D3DCompileFromFile(psFile.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "ps_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &psBlob, &errorBlob);
-	if (FAILED(hr)) {
-		DebugText::GetInstance()->ConsolePrintf(std::system_category().message(hr).c_str());
-		if (errorBlob) {
-			DebugText::GetInstance()->ConsolePrintf(reinterpret_cast<char*>(errorBlob->GetBufferPointer()));
-		}
-		assert(false);
-	}
 
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC graphicsPipelineStateDesc{};
 	graphicsPipelineStateDesc.pRootSignature = rootSignature;
@@ -170,12 +153,32 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	vertexResource->Release();
 	graphicsPipelineState->Release();
 	signatureBlob->Release();
-	if (errorBlob) {
-		errorBlob->Release();
-	}
+	
 	rootSignature->Release();
 	vsBlob->Release();
 	psBlob->Release();
 	KamataEngine::Finalize();
 	return 0;
+}
+
+
+ID3DBlob* CompileShader(const std::wstring& filePath,const std::string& shaderModel) {
+	ID3DBlob* ShaderBlob = nullptr;
+	ID3DBlob* errorBlob = nullptr;
+	
+	HRESULT hr = D3DCompileFromFile(
+		filePath.c_str(),
+		nullptr,
+		D3D_COMPILE_STANDARD_FILE_INCLUDE,
+		"main", shaderModel.c_str(), 
+		D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
+		0, &ShaderBlob, &errorBlob);
+	if (FAILED(hr)) {
+		if (errorBlob) {
+			OutputDebugStringA(reinterpret_cast<char*>(errorBlob->GetBufferPointer()));
+		}
+		assert(false);
+	}
+
+	return ShaderBlob;
 }
