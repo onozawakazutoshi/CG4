@@ -68,10 +68,10 @@
     <FxCompile Include="Resources\shaders\TerrainVS.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
-    <FxCompile Include="TestVS.hlsl">
+    <FxCompile Include="Resources\shaders\TestSP.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
-    <FxCompile Include="TestSP.hlsl">
+    <FxCompile Include="Resources\shaders\TestVS.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
   </ItemGroup>
