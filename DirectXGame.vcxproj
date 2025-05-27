@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MiscUtility.cpp" />
     <ClCompile Include="Parrticle.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
@@ -198,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="MiscUtility.h" />
     <ClInclude Include="Parrticle.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="WorldTransformEx.h" />
