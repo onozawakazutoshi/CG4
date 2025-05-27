@@ -1,11 +1,12 @@
 #include <Windows.h>
 #include <KamataEngine.h>
 #include <d3dcompiler.h>
+#include "Shader.h"
 
 using namespace KamataEngine;
 
 
-ID3DBlob* CompileShader(const std::wstring& filePath, const std::string& shaderModel);
+//ID3DBlob* CompileShader(const std::wstring& filePath, const std::string& shaderModel);
 
 	// Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) { 
@@ -55,15 +56,26 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	IDxcBlob* pixelShaderBlob = CompileShader(L"Shader/Object3d.PS.hlsl", L"ps_6_0", dxcUtils, dxcCompiler, includeHandler);
 	assert(pixelShaderBlob != nullptr);*/
 
-	ID3DBlob* vsBlob = CompileShader(L"Resources/shaders/TestVS.hlsl", "vs_5_0");
-	ID3DBlob* psBlob = CompileShader(L"Resources/shaders/TestSP.hlsl", "ps_5_0");
+	Shader vs;
+
+	vs.Load(L"Resources/shaders/TestVS.hlsl", "vs_5_0");
+
+	assert(vs.GetBlob() != nullptr);
+
+	Shader ps;
+
+	ps.Load(L"Resources/shaders/TestSP.hlsl", "ps_5_0");
+
+	assert(ps.GetBlob() != nullptr);
+
+
 	//ID3DBlob* errorBlob = nullptr;
 
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC graphicsPipelineStateDesc{};
 	graphicsPipelineStateDesc.pRootSignature = rootSignature;
 	graphicsPipelineStateDesc.InputLayout = inputLayoutDesc;
-	graphicsPipelineStateDesc.VS = {vsBlob->GetBufferPointer(), vsBlob->GetBufferSize()};
-	graphicsPipelineStateDesc.PS = {psBlob->GetBufferPointer(), psBlob->GetBufferSize()};
+	graphicsPipelineStateDesc.VS = {vs.GetBlob()->GetBufferPointer(), vs.GetBlob()->GetBufferSize()};
+	graphicsPipelineStateDesc.PS = {ps.GetBlob()->GetBufferPointer(), ps.GetBlob()->GetBufferSize()};
 	graphicsPipelineStateDesc.BlendState = blendDesc;
 	graphicsPipelineStateDesc.RasterizerState = rasterizerDesc;
 
@@ -155,30 +167,28 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	signatureBlob->Release();
 	
 	rootSignature->Release();
-	vsBlob->Release();
-	psBlob->Release();
 	KamataEngine::Finalize();
 	return 0;
 }
 
 
-ID3DBlob* CompileShader(const std::wstring& filePath,const std::string& shaderModel) {
-	ID3DBlob* ShaderBlob = nullptr;
-	ID3DBlob* errorBlob = nullptr;
-	
-	HRESULT hr = D3DCompileFromFile(
-		filePath.c_str(),
-		nullptr,
-		D3D_COMPILE_STANDARD_FILE_INCLUDE,
-		"main", shaderModel.c_str(), 
-		D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
-		0, &ShaderBlob, &errorBlob);
-	if (FAILED(hr)) {
-		if (errorBlob) {
-			OutputDebugStringA(reinterpret_cast<char*>(errorBlob->GetBufferPointer()));
-		}
-		assert(false);
-	}
-
-	return ShaderBlob;
-}
+//ID3DBlob* CompileShader(const std::wstring& filePath,const std::string& shaderModel) {
+//	ID3DBlob* ShaderBlob = nullptr;
+//	ID3DBlob* errorBlob = nullptr;
+//	
+//	HRESULT hr = D3DCompileFromFile(
+//		filePath.c_str(),
+//		nullptr,
+//		D3D_COMPILE_STANDARD_FILE_INCLUDE,
+//		"main", shaderModel.c_str(), 
+//		D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
+//		0, &ShaderBlob, &errorBlob);
+//	if (FAILED(hr)) {
+//		if (errorBlob) {
+//			OutputDebugStringA(reinterpret_cast<char*>(errorBlob->GetBufferPointer()));
+//		}
+//		assert(false);
+//	}
+//
+//	return ShaderBlob;
+//}
