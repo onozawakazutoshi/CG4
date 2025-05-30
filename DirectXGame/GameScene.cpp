@@ -14,12 +14,16 @@ void GameScene::Initialize() {
 	camera_->Initialize();
 	
 	srand((unsigned)time(NULL));
+	position = {distribution(randomEngine) * 30.0f, distribution(randomEngine) * 20.0f, 0};
+	
 }
 
 void GameScene::Update() { 
+	
 	if (rand() % 20 == 0) {
-		Vector3 position = {distribution(randomEngine) * 30.0f, distribution(randomEngine) * 20.0f, 0};
-		ParticleBorn(position);
+		position = {distribution(randomEngine) * 30.0f, distribution(randomEngine) * 20.0f, 0};
+		
+		ParticleBorn();
 	}
 	for (Parrticle* particle : particles_) {
 		particle->Update();
@@ -47,7 +51,7 @@ void GameScene::Draw() {
 
 }
 
-void GameScene::ParticleBorn(Vector3 position) {
+void GameScene::ParticleBorn() {
 	for (int i = 0; i < 1; i++) {
 		Parrticle* particle_ = new Parrticle();
 		Vector3 position_ = position;
@@ -58,7 +62,7 @@ void GameScene::ParticleBorn(Vector3 position) {
 		velocity *= distribution(randomEngine);
 		velocity *= 0.1f;
 
-		particle_->Initialize(modelParticle_, position_, velocity);
+		particle_->Initialize(modelParticle_, position_, velocity, rand());
 		particles_.push_back(particle_);
 	}
 }

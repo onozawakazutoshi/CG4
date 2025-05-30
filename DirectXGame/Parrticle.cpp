@@ -4,22 +4,22 @@ using namespace KamataEngine;
 using namespace MathUtility;
 
 
-void Parrticle::Initialize(Model* model, Vector3 position, Vector3 velocity) { 
+void Parrticle::Initialize(Model* model, Vector3 position, Vector3 velocity,int r) { 
 	assert(model);
 	model_ = model;
 	worldtransform_.Initialize();
 	worldtransform_.translation_ = position;
-	worldtransform_.scale_ = {0.2f, 0.2f, 0.2f};
+	worldtransform_.scale_ = {2.0f, 2.0f, 2.0f};
 
 	velocity_ = velocity;
 	objectColor_.Initialize();
 	color_ = {1, 1, 1, 1};
+	r;
+	uint32_t tex = TextureManager::Load("Line.png");
 
-	uint32_t tex = TextureManager::Load("white1x1.png");
-
-	sprite_ = Sprite::Create(tex, /*Vector2(worldtransform_.translation_.x*10+640, worldtransform_.translation_.y*10+360)*/ {100,100}, color_, {0.5, 0.5});
-	sprite_->SetRotation(position.x);
-	sprite_->SetSize(Vector2(50, 50));
+	sprite_ = Sprite::Create(tex, /*Vector2(worldtransform_.translation_.x*10+640, worldtransform_.translation_.y*10+360)*/ {640,360}, color_, {0.5, 0.5});
+	sprite_->SetRotation(worldtransform_.translation_.x);
+	sprite_->SetSize(Vector2(100, 100));
 }
 
 void Parrticle::Update() {

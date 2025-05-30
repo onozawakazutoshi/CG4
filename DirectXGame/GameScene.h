@@ -20,10 +20,11 @@ public:
 
 	void Draw();
 
-	void ParticleBorn(KamataEngine::Vector3 position);
+	void ParticleBorn();
 
 private:
 	KamataEngine::Model* modelParticle_ = nullptr;
 	KamataEngine::Camera* camera_;
 	std::list<Parrticle*> particles_;
+	KamataEngine::Vector3 position = {0, 0, 0};
 };

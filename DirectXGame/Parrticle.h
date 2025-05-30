@@ -4,7 +4,7 @@
 
 class Parrticle {
 public:
-	void Initialize(KamataEngine::Model* model, KamataEngine::Vector3 position, KamataEngine::Vector3 velocity);
+	void Initialize(KamataEngine::Model* model, KamataEngine::Vector3 position, KamataEngine::Vector3 velocity,int r);
 
 	void Update();
 
