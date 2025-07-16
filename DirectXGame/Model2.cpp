@@ -131,6 +131,50 @@ Model2* Model2::CreateSphere(uint32_t divisionVertial, uint32_t divisionHorizont
 	return instance;
 }
 
+Model2* Model2::CreateSquare() { 
+	Model2* instance = new Model2;
+	std::vector<Mesh::VertexPosNormalUv> vertices;
+	std::vector<uint32_t> indices;
+
+	const uint32_t kNumVertices = 4;
+
+	const uint32_t kNumIndices = 6;
+
+	vertices.resize(kNumVertices);
+	indices.resize(kNumIndices);
+
+	vertices[0].pos = {-10,10,0};
+	vertices[0].uv = {-1, 1.0};
+	vertices[0].normal = {0, 0, -1};
+
+	vertices[1].pos = {10, 10, 0};
+	vertices[1].uv = {1, 1.0};
+	vertices[1].normal = {0, 0, -1};
+
+	vertices[2].pos = {10, -10, 0};
+	vertices[2].uv = {1, -1.0};
+	vertices[2].normal = {0, 0, -1};
+
+	vertices[3].pos = {-10, -10, 0};
+	vertices[3].uv = {-1, -1.0};
+	vertices[3].normal = {0, 0, -1};
+
+	indices[0] = 1;
+	indices[1] = 2;
+	indices[2] = 3;
+
+	indices[3] = 0;
+	indices[4] = 1;
+	indices[5] = 3;
+
+	instance->InitializeFromVertices(vertices, indices);
+
+	
+
+
+	return instance; 
+}
+
 void Model2::PreDraw(ID3D12GraphicsCommandList* commandList) { ModelCommon2::GetInstance()->PreDraw(commandList); }
 
 void Model2::PostDraw() { ModelCommon2::GetInstance()->PostDraw(); }

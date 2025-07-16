@@ -12,7 +12,7 @@ using namespace MathUtility;
 
 void GameScene::Initialize() {
 	model_->StaticInitialize();
-	model_ = Model2::Create(); 
+	model_ = Model2::CreateSquare(); 
 	
 	camera_ = new Camera;
 	camera_->Initialize();

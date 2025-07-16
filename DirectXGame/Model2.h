@@ -137,6 +137,9 @@ public: // 静的メンバ関数
 	/// <returns>生成されたモデル</returns>
 	static Model2* CreateSphere(uint32_t divisionVertial = 10, uint32_t divisionHorizontal = 10);
 
+
+	static Model2* CreateSquare();
+
 	/// <summary>
 	/// 描画前処理
 	/// </summary>
@@ -185,6 +188,8 @@ public: // メンバ関数
 	/// </summary>
 	/// <param name="lightGroup">ライトグループ</param>
 	void SetLightGroup(const LightGroup* lightGroup) { lightGroup_ = lightGroup; }
+
+
 
 private: // メンバ変数
 	// 名前
