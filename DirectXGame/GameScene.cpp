@@ -13,6 +13,7 @@ using namespace MathUtility;
 void GameScene::Initialize() {
 	model_->StaticInitialize();
 	model_ = Model2::CreateSphere(4, 4); 
+	
 	camera_ = new Camera;
 	camera_->Initialize();
 	
@@ -33,11 +34,11 @@ void GameScene::Update() {
 
 void GameScene::Draw() { 
 	DirectXCommon* dxcommon = DirectXCommon::GetInstance();
-	Sprite::PreDraw(dxcommon->GetCommandList());
+	Model2::PreDraw(dxcommon->GetCommandList());
 
 	model_->Draw(worldtransform_, *camera_,&color_);
 	
-	Sprite::PostDraw();
+	Model2::PostDraw();
 	
 	
 
