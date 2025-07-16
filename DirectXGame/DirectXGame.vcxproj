@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model2.cpp" />
     <ClCompile Include="Parrticle.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
   </ItemGroup>
@@ -188,6 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Model2.h" />
     <ClInclude Include="Parrticle.h" />
     <ClInclude Include="WorldTransformEx.h" />
   </ItemGroup>
