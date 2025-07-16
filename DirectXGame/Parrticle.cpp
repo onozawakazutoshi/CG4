@@ -5,7 +5,7 @@ using namespace MathUtility;
 
 
 void Parrticle::Initialize(Model* model, Vector3 position, Vector3 velocity,int r) { 
-	assert(model);
+	//assert(model);
 	model_ = model;
 	worldtransform_.Initialize();
 	worldtransform_.translation_ = position;
