@@ -1,6 +1,8 @@
 #include "GameScene.h"
 #include <random>
 
+
+
 std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
 std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
@@ -9,32 +11,18 @@ using namespace KamataEngine;
 using namespace MathUtility;
 
 void GameScene::Initialize() {
-	modelParticle_ = Model::CreateSphere(4, 4); 
+	Model2::StaticInitialize();
+	model_ = Model2::CreateSphere(4, 4); 
 	camera_ = new Camera;
 	camera_->Initialize();
 	
 	srand((unsigned)time(NULL));
 	position = {distribution(randomEngine) * 30.0f, distribution(randomEngine) * 20.0f, 0};
 	
+
 }
 
 void GameScene::Update() { 
-	
-	if (rand() % 20 == 0) {
-		position = {distribution(randomEngine) * 30.0f, distribution(randomEngine) * 20.0f, 0};
-		
-		ParticleBorn();
-	}
-	for (Parrticle* particle : particles_) {
-		particle->Update();
-	}
-	particles_.remove_if([](Parrticle* particle) {
-		if (particle->IsFinished()) {
-			delete particle;
-			return true;
-		}
-		return false;
-	});
 	
 
 }
@@ -43,9 +31,8 @@ void GameScene::Draw() {
 	DirectXCommon* dxcommon = DirectXCommon::GetInstance();
 	Sprite::PreDraw(dxcommon->GetCommandList());
 
-	for (Parrticle* particle : particles_) {
-		particle->Draw(*camera_);
-	}
+	model_->Draw(position, camera_,nullptr);
+	
 	Sprite::PostDraw();
 	
 
@@ -61,8 +48,5 @@ void GameScene::ParticleBorn() {
 		Normalize(velocity);
 		velocity *= distribution(randomEngine);
 		velocity *= 0.1f;
-
-		particle_->Initialize(modelParticle_, position_, velocity, rand());
-		particles_.push_back(particle_);
 	}
 }

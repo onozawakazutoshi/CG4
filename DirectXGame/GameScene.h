@@ -1,17 +1,16 @@
 #pragma once
 #include <KamataEngine.h>
 #include "Parrticle.h"
+#include "Model2.h"
 
 class GameScene {
 
 public:
 	GameScene() {}
 	~GameScene() { 
-		delete modelParticle_;
-		for (Parrticle* particle : particles_) {
-			delete particle;
-		}
-		particles_.clear();
+		delete model_;
+		
+		Model2::StaticFinalize();
 	}
 
 	void Initialize();
@@ -23,8 +22,7 @@ public:
 	void ParticleBorn();
 
 private:
-	KamataEngine::Model* modelParticle_ = nullptr;
+	KamataEngine::Model2* model_ = nullptr;
 	KamataEngine::Camera* camera_;
-	std::list<Parrticle*> particles_;
 	KamataEngine::Vector3 position = {0, 0, 0};
 };
