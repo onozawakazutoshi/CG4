@@ -29,7 +29,9 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() { 
-	
+	worldtransform_.translation_ = position;
+	worldtransform_.scale_ = {10.0f, 10.0f, 1.0f};
+
 
 }
 
