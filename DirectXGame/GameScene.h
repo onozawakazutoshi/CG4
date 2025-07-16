@@ -26,7 +26,7 @@ public:
 private:
 	KamataEngine::Model2* model_ = nullptr;
 	KamataEngine::Camera* camera_;
-	KamataEngine::Vector3 position = {0, 0, 0};
+	KamataEngine::Vector3 position;
 	uint32_t tex;
 	KamataEngine::ObjectColor color_;
 	KamataEngine::WorldTransform worldtransform_;

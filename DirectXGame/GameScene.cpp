@@ -12,19 +12,20 @@ using namespace MathUtility;
 
 void GameScene::Initialize() {
 	model_->StaticInitialize();
-	model_ = Model2::CreateSphere(4, 4); 
+	model_ = Model2::Create(); 
 	
 	camera_ = new Camera;
 	camera_->Initialize();
 	
 	srand((unsigned)time(NULL));
-	position = {distribution(randomEngine) * 30.0f, distribution(randomEngine) * 20.0f, 0};
-	tex = TextureManager::Load("Line.png");
+	position = {100.0f,0.0f, 0};
+	tex = TextureManager::Load("uvChecker.png");
 	color_.Initialize();
-	color_.SetColor(Vector4{0, 0, 0, 1});
+	color_.SetColor(Vector4{1, 1, 1, 1});
 	worldtransform_.Initialize();
 	worldtransform_.translation_ = position;
-	worldtransform_.scale_ = {2.0f, 2.0f, 2.0f};
+	worldtransform_.scale_ = {10.0f, 10.0f, 1.0f};
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 void GameScene::Update() { 
@@ -36,7 +37,7 @@ void GameScene::Draw() {
 	DirectXCommon* dxcommon = DirectXCommon::GetInstance();
 	Model2::PreDraw(dxcommon->GetCommandList());
 
-	model_->Draw(worldtransform_, *camera_,&color_);
+	model_->Draw(worldtransform_, *camera_,tex,&color_);
 	
 	Model2::PostDraw();
 	

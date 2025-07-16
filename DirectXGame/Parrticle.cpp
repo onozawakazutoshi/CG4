@@ -15,7 +15,7 @@ void Parrticle::Initialize(Model* model, Vector3 position, Vector3 velocity,int 
 	objectColor_.Initialize();
 	color_ = {1, 1, 1, 1};
 	r;
-	uint32_t tex = TextureManager::Load("Line.png");
+	uint32_t tex = TextureManager::Load("uvChecker.png");
 
 	sprite_ = Sprite::Create(tex, /*Vector2(worldtransform_.translation_.x*10+640, worldtransform_.translation_.y*10+360)*/ {640,360}, color_, {0.5, 0.5});
 	sprite_->SetRotation(worldtransform_.translation_.x);
