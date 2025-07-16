@@ -31,7 +31,7 @@ void GameScene::Draw() {
 	DirectXCommon* dxcommon = DirectXCommon::GetInstance();
 	Sprite::PreDraw(dxcommon->GetCommandList());
 
-	model_->Draw(position, camera_,nullptr);
+	model_->Draw(position, camera_, , Vector4{0,0,0,1});
 	
 	Sprite::PostDraw();
 	
