@@ -18,8 +18,8 @@ void GameScene::Initialize() {
 	
 	srand((unsigned)time(NULL));
 	position = {distribution(randomEngine) * 30.0f, distribution(randomEngine) * 20.0f, 0};
-	
-
+	tex = TextureManager::Load("Line.png");
+	color_->SetColor(Vector4{0, 0, 0, 1});
 }
 
 void GameScene::Update() { 
@@ -31,7 +31,7 @@ void GameScene::Draw() {
 	DirectXCommon* dxcommon = DirectXCommon::GetInstance();
 	Sprite::PreDraw(dxcommon->GetCommandList());
 
-	model_->Draw(position, camera_, , Vector4{0,0,0,1});
+	model_->Draw(position, camera_,color_);
 	
 	Sprite::PostDraw();
 	
