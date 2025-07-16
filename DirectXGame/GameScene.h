@@ -10,7 +10,9 @@ public:
 	~GameScene() { 
 		delete model_;
 		
-		Model2::StaticFinalize();
+		model_->StaticFinalize();
+		
+		
 	}
 
 	void Initialize();
@@ -26,5 +28,6 @@ private:
 	KamataEngine::Camera* camera_;
 	KamataEngine::Vector3 position = {0, 0, 0};
 	uint32_t tex;
-	KamataEngine::ObjectColor* color_;
+	KamataEngine::ObjectColor color_;
+	KamataEngine::WorldTransform worldtransform_;
 };
