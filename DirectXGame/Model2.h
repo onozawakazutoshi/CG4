@@ -140,6 +140,8 @@ public: // 静的メンバ関数
 
 	static Model2* CreateSquare(const int pieces);
 
+
+	static Model2* CreateRing(const int pieces);
 	/// <summary>
 	/// 描画前処理
 	/// </summary>

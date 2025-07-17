@@ -14,6 +14,7 @@
 #include <numbers>
 #include <sstream>
 #include "Model2.h"
+#include <cmath>
 
 #pragma comment(lib, "d3dcompiler.lib")
 
@@ -174,6 +175,51 @@ Model2* Model2::CreateSquare(const int pieces) {
 
 
 	return instance; 
+}
+
+Model2* Model2::CreateRing(const int pieces) {
+	Model2* instance = new Model2;
+	std::vector<Mesh::VertexPosNormalUv> vertices;
+	std::vector<uint32_t> indices;
+
+	const uint32_t kNumVertices = 4 * pieces;
+
+	const uint32_t kNumIndices = 6 * pieces;
+
+	vertices.resize(kNumVertices);
+	indices.resize(kNumIndices);
+
+	const float PI = 3.14159264f;
+
+	for (int i = 0; i < pieces; i++) {
+		vertices[0 + (i * 4)].pos = {-5.0f * cosf(PI / pieces * i), 5.0f * sinf(PI / pieces * i), 0};
+		vertices[0 + (i * 4)].uv = {-1.0f  * cosf(PI / pieces * i), 1.0f  * sinf(PI / pieces * i)};
+		vertices[0 + (i * 4)].normal = {0, 0, -1};
+
+		vertices[1 + (i * 4)].pos = {5.0f * cosf(PI / pieces * (i + 1)), 5.0f * sinf(PI / pieces * (i + 1)), 0};
+		vertices[1 + (i * 4)].uv = {1.0f  * cosf(PI / pieces * (i + 1)), 1.0f  * sinf(PI / pieces * (i + 1))};
+		vertices[1 + (i * 4)].normal = {0, 0, -1};
+
+		vertices[2 + (i * 4)].pos = {3.0f * cosf(PI / pieces * (i + 1)), -3.0f * sinf(PI / pieces * (i + 1)), 0};
+		vertices[2 + (i * 4)].uv = {1.0f * cosf(PI / pieces * (i + 1)), -1.0f  * sinf(PI / pieces * (i + 1))};
+		vertices[2 + (i * 4)].normal = {0, 0, -1};
+
+		vertices[3 + (i * 4)].pos = {-3.0f * cosf(PI / pieces * i), -3.0f * sinf(PI / pieces * i), 0};
+		vertices[3 + (i * 4)].uv = {-1.0f *  cosf(PI / pieces * i), -1.0f *  sinf(PI / pieces * i)};
+		vertices[3 + (i * 4)].normal = {0, 0, -1};
+
+		indices[0 + (i * 6)] = 1 + (i * 4);
+		indices[1 + (i * 6)] = 2 + (i * 4);
+		indices[2 + (i * 6)] = 3 + (i * 4);
+
+		indices[3 + (i * 6)] = 0 + (i * 4);
+		indices[4 + (i * 6)] = 1 + (i * 4);
+		indices[5 + (i * 6)] = 3 + (i * 4);
+	}
+	instance->InitializeFromVertices(vertices, indices);
+
+	return instance; 
+
 }
 
 void Model2::PreDraw(ID3D12GraphicsCommandList* commandList) { ModelCommon2::GetInstance()->PreDraw(commandList); }
