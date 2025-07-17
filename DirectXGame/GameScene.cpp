@@ -18,7 +18,7 @@ void GameScene::Initialize() {
 	camera_->Initialize();
 	
 	srand((unsigned)time(NULL));
-	position = {100.0f,0.0f, 0};
+	position = {0.0f,0.0f, 0};
 	tex = TextureManager::Load("uvChecker.png");
 	color_.Initialize();
 	color_.SetColor(Vector4{1, 1, 1, 1});
@@ -30,9 +30,10 @@ void GameScene::Initialize() {
 
 void GameScene::Update() { 
 	worldtransform_.translation_ = position;
-	worldtransform_.scale_ = {10.0f, 10.0f, 1.0f};
-
-
+	worldtransform_.scale_ = {20.0f, 20.0f, 1.0f};
+	
+	worldtransform_.TransferMatrix();
+	worldtransform_.UpdateMatrix();
 }
 
 void GameScene::Draw() { 
