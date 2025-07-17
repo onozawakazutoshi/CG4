@@ -138,7 +138,7 @@ public: // 静的メンバ関数
 	static Model2* CreateSphere(uint32_t divisionVertial = 10, uint32_t divisionHorizontal = 10);
 
 
-	static Model2* CreateSquare();
+	static Model2* CreateSquare(const int pieces);
 
 	/// <summary>
 	/// 描画前処理
