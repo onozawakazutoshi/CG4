@@ -185,36 +185,40 @@ Model2* Model2::CreateRing(const int pieces) {
 	const uint32_t kNumVertices = 4 * pieces;
 
 	const uint32_t kNumIndices = 6 * pieces;
+	
+	float uvX = 1.0f / pieces;
 
 	vertices.resize(kNumVertices);
 	indices.resize(kNumIndices);
 
-	const float PI = 3.14159264f;
+	const float PI = 3.14159264f*2;
 
 	for (int i = 0; i < pieces; i++) {
-		vertices[0 + (i * 4)].pos = {-5.0f * cosf(PI / pieces * i), 5.0f * sinf(PI / pieces * i), 0};
-		vertices[0 + (i * 4)].uv = {-1.0f  * cosf(PI / pieces * i), 1.0f  * sinf(PI / pieces * i)};
+		vertices[0 + (i * 4)].pos = {5.0f * cosf(PI / pieces * i), 5.0f * sinf(PI / pieces * i), 0};
+		vertices[0 + (i * 4)].uv = {uvX + (uvX*i), 1};
 		vertices[0 + (i * 4)].normal = {0, 0, -1};
 
 		vertices[1 + (i * 4)].pos = {5.0f * cosf(PI / pieces * (i + 1)), 5.0f * sinf(PI / pieces * (i + 1)), 0};
-		vertices[1 + (i * 4)].uv = {1.0f  * cosf(PI / pieces * (i + 1)), 1.0f  * sinf(PI / pieces * (i + 1))};
+		vertices[1 + (i * 4)].uv = {uvX * 2 + (uvX * i), 1};
 		vertices[1 + (i * 4)].normal = {0, 0, -1};
 
-		vertices[2 + (i * 4)].pos = {3.0f * cosf(PI / pieces * (i + 1)), -3.0f * sinf(PI / pieces * (i + 1)), 0};
-		vertices[2 + (i * 4)].uv = {1.0f * cosf(PI / pieces * (i + 1)), -1.0f  * sinf(PI / pieces * (i + 1))};
+		vertices[2 + (i * 4)].pos = {3.0f * cosf(PI / pieces * (i + 1)), 3.0f * sinf(PI / pieces * (i + 1)), 0};
+		vertices[2 + (i * 4)].uv = {uvX * 2 + (uvX * i), 0};
 		vertices[2 + (i * 4)].normal = {0, 0, -1};
 
-		vertices[3 + (i * 4)].pos = {-3.0f * cosf(PI / pieces * i), -3.0f * sinf(PI / pieces * i), 0};
-		vertices[3 + (i * 4)].uv = {-1.0f *  cosf(PI / pieces * i), -1.0f *  sinf(PI / pieces * i)};
-		vertices[3 + (i * 4)].normal = {0, 0, -1};
+		vertices[3 + (i * 4)].pos = {3.0f * cosf(PI / pieces * i), 3.0f * sinf(PI / pieces * i), 0};
+		vertices[3 + (i * 4)].uv = {uvX + (uvX * i), 0};
+		vertices[3  + (i * 4)].normal = {0, 0, -1};
 
-		indices[0 + (i * 6)] = 1 + (i * 4);
+		indices[0 + (i * 6)] = 3 + (i * 4);
 		indices[1 + (i * 6)] = 2 + (i * 4);
-		indices[2 + (i * 6)] = 3 + (i * 4);
+		indices[2 + (i * 6)] = 1 + (i * 4);
 
-		indices[3 + (i * 6)] = 0 + (i * 4);
+		indices[3 + (i * 6)] = 3 + (i * 4);
 		indices[4 + (i * 6)] = 1 + (i * 4);
-		indices[5 + (i * 6)] = 3 + (i * 4);
+		indices[5 + (i * 6)] = 0 + (i * 4);
+
+		
 	}
 	instance->InitializeFromVertices(vertices, indices);
 

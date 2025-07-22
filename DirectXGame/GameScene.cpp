@@ -12,27 +12,28 @@ using namespace MathUtility;
 
 void GameScene::Initialize() {
 	model_->StaticInitialize();
-	model_ = Model2::CreateRing(4); 
+	model_ = Model2::CreateRing(32); 
 	
 	camera_ = new Camera;
 	camera_->Initialize();
 	
 	srand((unsigned)time(NULL));
-	position = {100.0f,0.0f, 0};
+	position = {0.0f,0.0f, 0};
 	tex = TextureManager::Load("uvChecker.png");
 	color_.Initialize();
 	color_.SetColor(Vector4{1, 1, 1, 1});
 	worldtransform_.Initialize();
 	worldtransform_.translation_ = position;
-	worldtransform_.scale_ = {10.0f, 10.0f, 1.0f};
+	worldtransform_.scale_ = {3.0f, 3.0f, 1.0f};
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 void GameScene::Update() { 
 	worldtransform_.translation_ = position;
-	worldtransform_.scale_ = {10.0f, 10.0f, 1.0f};
-
-
+	//worldtransform_.rotation_.x +=0.01f;
+	
+	worldtransform_.TransferMatrix();
+	worldtransform_.UpdateMatrix();
 }
 
 void GameScene::Draw() { 
