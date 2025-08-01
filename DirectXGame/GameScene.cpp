@@ -18,6 +18,8 @@ void GameScene::Initialize() {
 	camera_->Initialize();
 	
 	backScreen->Initialize();
+	
+
 
 	srand((unsigned)time(NULL));
 	position = {0.0f,0.0f, 0};
@@ -26,7 +28,9 @@ void GameScene::Initialize() {
 	color_.SetColor(Vector4{1, 1, 1, 1});
 	worldtransform_.Initialize();
 	worldtransform_.translation_ = position;
-	worldtransform_.scale_ = {3.0f, 3.0f, 1.0f};
+	worldtransform_.scale_ = {1.0f, 1.0f, 1.0f};
+	
+	hp_->Initialize({position.x+640,position.y+360-100});
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -38,6 +42,8 @@ void GameScene::Update() {
 	worldtransform_.UpdateMatrix();
 
 	backScreen->Update();
+	hp_->Update();
+
 }
 
 void GameScene::Draw() { 
@@ -53,6 +59,7 @@ void GameScene::Draw() {
 	
 	Model2::PostDraw();
 	
+	hp_->Draw(dxcommon->GetCommandList());
 	
 
 }

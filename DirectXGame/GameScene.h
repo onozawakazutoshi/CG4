@@ -3,6 +3,7 @@
 #include "Parrticle.h"
 #include "Model2.h"
 #include "BackScreen.h"
+#include "Hp.h"
 
 class GameScene {
 
@@ -32,5 +33,5 @@ private:
 	KamataEngine::ObjectColor color_;
 	KamataEngine::WorldTransform worldtransform_;
 	BackScreen* backScreen = new BackScreen;
-
+	Hp* hp_ = new Hp;
 };

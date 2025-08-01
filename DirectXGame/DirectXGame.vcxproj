@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="BackScreen.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Hp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model2.cpp" />
     <ClCompile Include="Parrticle.cpp" />
@@ -192,6 +193,7 @@
   <ItemGroup>
     <ClInclude Include="BackScreen.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Hp.h" />
     <ClInclude Include="Model2.h" />
     <ClInclude Include="Parrticle.h" />
     <ClInclude Include="Title.h" />
