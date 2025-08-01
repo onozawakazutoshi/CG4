@@ -17,6 +17,8 @@ void GameScene::Initialize() {
 	camera_ = new Camera;
 	camera_->Initialize();
 	
+	backScreen->Initialize();
+
 	srand((unsigned)time(NULL));
 	position = {0.0f,0.0f, 0};
 	tex = TextureManager::Load("uvChecker.png");
@@ -34,10 +36,15 @@ void GameScene::Update() {
 	
 	worldtransform_.TransferMatrix();
 	worldtransform_.UpdateMatrix();
+
+	backScreen->Update();
 }
 
 void GameScene::Draw() { 
 	DirectXCommon* dxcommon = DirectXCommon::GetInstance();
+	
+	backScreen->Draw(dxcommon->GetCommandList());
+
 	Model2::PreDraw(dxcommon->GetCommandList());
 
 	model_->Draw(worldtransform_, *camera_,tex,&color_);

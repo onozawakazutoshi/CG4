@@ -2,6 +2,7 @@
 #include <KamataEngine.h>
 #include "Parrticle.h"
 #include "Model2.h"
+#include "BackScreen.h"
 
 class GameScene {
 
@@ -30,4 +31,6 @@ private:
 	uint32_t tex;
 	KamataEngine::ObjectColor color_;
 	KamataEngine::WorldTransform worldtransform_;
+	BackScreen* backScreen = new BackScreen;
+
 };

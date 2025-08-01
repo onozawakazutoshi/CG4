@@ -145,19 +145,19 @@ Model2* Model2::CreateSquare(const int pieces) {
 	indices.resize(kNumIndices);
 
 	for (int i = 0; i < pieces; i++) {
-		vertices[0+(i*4)].pos = {-10.0f*(i+1), 10, 0};
+		vertices[0+(i*4)].pos = {-10.0f*(i+1), 10, -10};
 		vertices[0 + (i * 4)].uv = {-1.0f * (i + 1), 1.0};
 		vertices[0 + (i * 4)].normal = {0, 0, -1};
 
-		vertices[1 + (i * 4)].pos = {10.0f * (i + 1), 10, 0};
+		vertices[1 + (i * 4)].pos = {10.0f * (i + 1), 10, -10};
 		vertices[1 + (i * 4)].uv = {1.0f * (i + 1), 1.0};
 		vertices[1 + (i * 4)].normal = {0, 0, -1};
 
-		vertices[2 + (i * 4)].pos = {10.0f * (i+1), -10, 0};
+		vertices[2 + (i * 4)].pos = {10.0f * (i + 1), -10, -10};
 		vertices[2 + (i * 4)].uv = {1.0f * (i + 1), -1.0};
 		vertices[2 + (i * 4)].normal = {0, 0, -1};
 
-		vertices[3 + (i * 4)].pos = {-10.0f * (i + 1), -10, 0};
+		vertices[3 + (i * 4)].pos = {-10.0f * (i + 1), -10, -10};
 		vertices[3 + (i * 4)].uv = {-1.0f * (i + 1), -1.0};
 		vertices[3 + (i * 4)].normal = {0, 0, -1};
 
@@ -194,19 +194,19 @@ Model2* Model2::CreateRing(const int pieces) {
 	const float PI = 3.14159264f*2;
 
 	for (int i = 0; i < pieces; i++) {
-		vertices[0 + (i * 4)].pos = {5.0f * cosf(PI / pieces * i), 5.0f * sinf(PI / pieces * i), 0};
+		vertices[0 + (i * 4)].pos = {5.0f * cosf(PI / pieces * i), 5.0f * sinf(PI / pieces * i), 1};
 		vertices[0 + (i * 4)].uv = {uvX + (uvX*i), 1};
 		vertices[0 + (i * 4)].normal = {0, 0, -1};
 
-		vertices[1 + (i * 4)].pos = {5.0f * cosf(PI / pieces * (i + 1)), 5.0f * sinf(PI / pieces * (i + 1)), 0};
+		vertices[1 + (i * 4)].pos = {5.0f * cosf(PI / pieces * (i + 1)), 5.0f * sinf(PI / pieces * (i + 1)), 1};
 		vertices[1 + (i * 4)].uv = {uvX * 2 + (uvX * i), 1};
 		vertices[1 + (i * 4)].normal = {0, 0, -1};
 
-		vertices[2 + (i * 4)].pos = {3.0f * cosf(PI / pieces * (i + 1)), 3.0f * sinf(PI / pieces * (i + 1)), 0};
+		vertices[2 + (i * 4)].pos = {3.0f * cosf(PI / pieces * (i + 1)), 3.0f * sinf(PI / pieces * (i + 1)), 1};
 		vertices[2 + (i * 4)].uv = {uvX * 2 + (uvX * i), 0};
 		vertices[2 + (i * 4)].normal = {0, 0, -1};
 
-		vertices[3 + (i * 4)].pos = {3.0f * cosf(PI / pieces * i), 3.0f * sinf(PI / pieces * i), 0};
+		vertices[3 + (i * 4)].pos = {3.0f * cosf(PI / pieces * i), 3.0f * sinf(PI / pieces * i), 1};
 		vertices[3 + (i * 4)].uv = {uvX + (uvX * i), 0};
 		vertices[3  + (i * 4)].normal = {0, 0, -1};
 

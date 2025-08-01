@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -106,10 +106,12 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackScreen.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model2.cpp" />
     <ClCompile Include="Parrticle.cpp" />
+    <ClCompile Include="Title.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,9 +190,11 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackScreen.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Model2.h" />
     <ClInclude Include="Parrticle.h" />
+    <ClInclude Include="Title.h" />
     <ClInclude Include="WorldTransformEx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
