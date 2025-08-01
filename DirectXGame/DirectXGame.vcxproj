@@ -112,6 +112,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model2.cpp" />
     <ClCompile Include="Parrticle.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
   </ItemGroup>
@@ -196,6 +197,7 @@
     <ClInclude Include="Hp.h" />
     <ClInclude Include="Model2.h" />
     <ClInclude Include="Parrticle.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="WorldTransformEx.h" />
   </ItemGroup>

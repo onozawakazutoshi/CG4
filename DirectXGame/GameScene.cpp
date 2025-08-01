@@ -31,6 +31,8 @@ void GameScene::Initialize() {
 	worldtransform_.scale_ = {1.0f, 1.0f, 1.0f};
 	
 	hp_->Initialize({position.x+640,position.y+360-100});
+	score_->Initialize();
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -43,6 +45,9 @@ void GameScene::Update() {
 
 	backScreen->Update();
 	hp_->Update();
+
+	score_;
+	score_->Update();
 
 }
 
@@ -60,7 +65,7 @@ void GameScene::Draw() {
 	Model2::PostDraw();
 	
 	hp_->Draw(dxcommon->GetCommandList());
-	
+	score_->Draw(dxcommon->GetCommandList());
 
 }
 

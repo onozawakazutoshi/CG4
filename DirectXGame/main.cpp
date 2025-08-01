@@ -14,7 +14,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	KamataEngine::Initialize();
 	gameScene->Initialize();
 	title->Initialize();
-
+	int Scene = 1;
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
 	while (true) {
@@ -23,14 +23,21 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 			break;
 		}
 
-		gameScene->Update();
+		switch (Scene) {
 
-		dxCommon->PreDraw();
-		//title->Draw(dxCommon->GetCommandList());
+		case 0:
+			dxCommon->PreDraw();
+			title->Draw(dxCommon->GetCommandList());
+			dxCommon->PostDraw();
+			break;
+		case 1:
+			gameScene->Update();
 
-		gameScene->Draw();
-		dxCommon->PostDraw();
+			dxCommon->PreDraw();
 
+			gameScene->Draw();
+			dxCommon->PostDraw();
+		}
 		
 	}
 

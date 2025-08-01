@@ -4,6 +4,7 @@
 #include "Model2.h"
 #include "BackScreen.h"
 #include "Hp.h"
+#include "Score.h"
 
 class GameScene {
 
@@ -34,4 +35,5 @@ private:
 	KamataEngine::WorldTransform worldtransform_;
 	BackScreen* backScreen = new BackScreen;
 	Hp* hp_ = new Hp;
+	Score* score_ = new Score;
 };
