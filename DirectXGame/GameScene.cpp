@@ -43,8 +43,10 @@ void GameScene::Update() {
 void GameScene::Draw() { 
 	DirectXCommon* dxcommon = DirectXCommon::GetInstance();
 	
+
 	backScreen->Draw(dxcommon->GetCommandList());
 
+	dxcommon->ClearDepthBuffer();
 	Model2::PreDraw(dxcommon->GetCommandList());
 
 	model_->Draw(worldtransform_, *camera_,tex,&color_);
